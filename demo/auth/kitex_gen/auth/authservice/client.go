@@ -3,7 +3,7 @@
 package authservice
 
 import (
-	auth "auth/kitex_gen/auth"
+	auth "github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth"
 	"context"
 	client "github.com/cloudwego/kitex/client"
 	callopt "github.com/cloudwego/kitex/client/callopt"

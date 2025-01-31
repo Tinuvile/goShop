@@ -101,5 +101,65 @@ PS F:\goShop\goShop\demo\auth> go run .
 
 ```go
 // demo/auth/cmd/client/main.go
+package main
 
+import (
+	"context"
+	"fmt"
+	"github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth"
+	"log"
+
+	"github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth/authservice" // 客户端代码
+	"github.com/cloudwego/kitex/client"
+	consul "github.com/kitex-contrib/registry-consul"
+)
+
+func main() {
+	// 1. 创建Consul解析器
+	resolver, err := consul.NewConsulResolver("127.0.0.1:8500")
+	if err != nil {
+		log.Fatal("创建解析器失败:", err)
+	}
+
+	// 2. 创建客户端（服务名称需要与服务端保持一致）
+	authClient, err := authservice.NewClient(
+		"auth", // 服务名称
+		client.WithResolver(resolver),
+	)
+	if err != nil {
+		log.Fatal("创建客户端失败:", err)
+	}
+
+	fmt.Printf("%v", authClient)
+
+	// 3. 测试Token颁发功能
+	deliverResp, err := authClient.DeliverTokenByRPC(context.Background(), &auth.DeliverTokenReq{
+		UserId: 1001,
+	})
+	if err != nil {
+		log.Fatal("颁发Token失败:", err)
+	}
+	log.Printf("颁发的Token: %s", deliverResp.Token)
+
+	// 4. 测试Token验证功能
+	verifyResp, err := authClient.VerifyTokenByRPC(context.Background(), &auth.VerifyTokenReq{
+		Token: deliverResp.Token,
+	})
+	if err != nil {
+		log.Fatal("验证Token失败:", err)
+	}
+	log.Printf("验证结果: %t", verifyResp.Res)
+}
 ```
+
+这里踩了个大坑，前一天使用Kitex生成的代码使用了错误的导入路径，authservice文件夹以及go.mod全部需要手动修改。
+
+### 检测效果
+
+```powershell
+PS F:\goShop\goShop\demo\auth> go run cmd/client/main.go
+&{0xc001b5f4d0}2025/01/31 23:33:10 颁发Token失败:service discovery error: no service found
+exit status 1
+```
+
+可以用浏览器访问[Consul Web界面](http://localhost:8500/)
