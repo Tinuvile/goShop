@@ -43,7 +43,7 @@ func kitexInit() (opts []server.Option) {
 	}))
 
 	// Consul服务注册
-	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0], consul.WithServiceName("auth"))
+	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
 	if err != nil {
 		log.Fatal(err)
 	}
