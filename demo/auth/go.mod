@@ -1,4 +1,4 @@
-module auth
+module github.com/Tinuvile/goShop/demo/auth
 
 go 1.23.4
 
