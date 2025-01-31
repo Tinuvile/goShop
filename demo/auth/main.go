@@ -6,8 +6,8 @@ import (
 	"net"
 	"time"
 
-	"auth/conf"
-	"auth/kitex_gen/auth/authservice"
+	"github.com/Tinuvile/goShop/demo/auth/conf"
+	"github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth/authservice"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
@@ -43,7 +43,7 @@ func kitexInit() (opts []server.Option) {
 	}))
 
 	// Consul服务注册
-	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
+	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0], consul.WithServiceName("auth"))
 	if err != nil {
 		log.Fatal(err)
 	}

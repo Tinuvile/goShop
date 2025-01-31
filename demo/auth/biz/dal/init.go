@@ -1,8 +1,8 @@
 package dal
 
 import (
-	"auth/biz/dal/mysql"
-	"auth/biz/dal/redis"
+	"github.com/Tinuvile/goShop/demo/auth/biz/dal/mysql"
+	"github.com/Tinuvile/goShop/demo/auth/biz/dal/redis"
 )
 
 func Init() {
