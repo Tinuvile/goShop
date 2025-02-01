@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/Tinuvile/goShop/demo/auth/biz/dal"
+	"github.com/joho/godotenv"
 	consul "github.com/kitex-contrib/registry-consul"
 	"log"
 	"net"
@@ -18,6 +20,12 @@ import (
 
 // 初始化服务并启动服务器
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
+	}
+	dal.Init()
+
 	opts := kitexInit() // 初始化配置
 
 	svr := authservice.NewServer(new(AuthServiceImpl), opts...) // 创建服务实例
