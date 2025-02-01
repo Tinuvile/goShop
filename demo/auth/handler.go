@@ -1,9 +1,9 @@
 package main
 
 import (
-	auth "auth/kitex_gen/auth"
 	"context"
-	"auth/biz/service"
+	"github.com/Tinuvile/goShop/demo/auth/biz/service"
+	auth "github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth"
 )
 
 // AuthServiceImpl implements the last service interface defined in the IDL.

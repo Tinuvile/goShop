@@ -24,13 +24,14 @@ func main() {
 	if err != nil {
 		panic("Error loading .env file")
 	}
-	dal.Init()
 
 	opts := kitexInit() // 初始化配置
 
+	dal.Init()
+
 	svr := authservice.NewServer(new(AuthServiceImpl), opts...) // 创建服务实例
 
-	err := svr.Run() // 启动服务
+	err = svr.Run() // 启动服务
 	if err != nil {
 		klog.Error(err.Error())
 	} // 错误日志

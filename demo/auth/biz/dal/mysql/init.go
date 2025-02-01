@@ -29,4 +29,19 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
+
+	// 测试使用
+	type Version struct {
+		Version string
+	}
+
+	var v Version
+
+	err = DB.Raw("select version() as version").Scan(&v).Error
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(v)
 }

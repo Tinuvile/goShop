@@ -246,8 +246,18 @@ consul-1  | 2025-02-01T10:55:11.929Z [DEBUG] agent.http: Request finished: metho
 consul-1  | 2025-02-01T10:55:12.121Z [DEBUG] agent.http: Request finished: method=GET url=/v1/internal/ui/services?dc=dc1 from=172.18.0.1:51656 latency="377.937µs"
 consul-1  | 2025-02-01T10:55:40.456Z [DEBUG] agent.router.manager: Rebalanced servers, new active server: number_of_servers=1 active_server="d34a957abaaa.dc1 (Addr: tcp/127.0.0.1:8300) (DC: dc1)"
 consul-1  | 2025-02-01T10:55:40.456Z [DEBUG] agent.router.manager: Rebalanced servers, new active server: number_of_servers=1 active_server="d34a957abaaa (Addr: tcp/127.0.0.1:8300) (DC: dc1)"
-
+consul-1  | 2025-02-01T10:56:05.665Z [DEBUG] agent: Skipping remote check since it is managed automatically: check=serfHealth
+consul-1  | 2025-02-01T10:56:05.665Z [DEBUG] agent: Node info in sync
+consul-1  | 2025-02-01T10:57:03.362Z [DEBUG] agent: Skipping remote check since it is managed automatically: check=serfHealth
+consul-1  | 2025-02-01T10:57:03.362Z [DEBUG] agent: Node info in sync
+consul-1  | 2025-02-01T10:57:33.336Z [DEBUG] agent.router.manager: Rebalanced servers, new active server: number_of_servers=1 active_server="d34a957abaaa.dc1 (Addr: tcp/127.0.0.1:8300) (DC: dc1)"
+consul-1  | 2025-02-01T10:58:20.166Z [DEBUG] agent.router.manager: Rebalanced servers, new active server: number_of_servers=1 active_server="d34a957abaaa (Addr: tcp/127.0.0.1:8300) (DC: dc1)"
+consul-1  | 2025-02-01T10:58:53.002Z [DEBUG] agent: Skipping remote check since it is managed automatically: check=serfHealth
+consul-1  | 2025-02-01T10:58:53.002Z [DEBUG] agent: Node info in sync
+consul-1  | 2025-02-01T10:59:29.102Z [DEBUG] agent.router.manager: Rebalanced servers, new active server: number_of_servers=1 active_server="d34a957abaaa.dc1 (Addr: tcp/127.0.0.1:8300) (DC: dc1)"
 ```
+
+### 创建test数据库
 
 ```powershell
 PS F:\goShop\goShop> docker-compose exec mysql bash
@@ -278,3 +288,64 @@ mysql> SHOW DATABASES;
 mysql> CREATE DATABASE test;
 Query OK, 1 row affected (0.03 sec)
 ```
+
+### 启动项目
+
+```powershell
+PS F:\goShop\goShop\demo\auth> go run .
+&{Env:test Kitex:{Service:auth Address::8888 LogLevel:info LogFileName:log/kitex.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:%s:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Username: Password: DB:0} Registry:{RegistryAddress:[127.0.0.1:8500] Username: Password:}}
+```
+
+### 简单测试
+
+```go
+// demo/auth/biz/dal/mysql/init.go
+func Init() {
+	dsn := fmt.Sprintf(conf.GetConf().MySQL.DSN,
+		os.Getenv("MYSQL_USER"),
+		os.Getenv("MYSQL_PASSWORD"),
+		os.Getenv("MYSQL_HOST"),
+		os.Getenv("MYSQL_ROOT_DATABASE"))
+	DB, err = gorm.Open(mysql.Open(dsn),
+		&gorm.Config{
+			PrepareStmt:            true,
+			SkipDefaultTransaction: true,
+		},
+	)
+	if err != nil {
+		panic(err)
+	}
+
+	// 测试使用
+	type Version struct {
+		Version string
+	}
+
+	var v Version
+
+	err = DB.Raw("select version() as version").Scan(&v).Error
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(v)
+}
+```
+
+运行
+
+```powershell
+PS F:\goShop\goShop\demo\auth> go run .
+&{Env:test Kitex:{Service:auth Address::8888 LogLevel:info LogFileName:log/kitex.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:%s:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Username: Password: DB:0} Registry:{RegistryAddress:[127.0.0.1:8500] Username: Password:}}
+{9.2.0}
+```
+
+## 配置中心
+
+常用的有[Etcd](https://github.com/kitex-contrib/config-etcd)，
+[Consul](https://github.com/kitex-contrib/config-consul)，
+[Zookeeper](https://github.com/kitex-contrib/config-zookeeper)，
+[Nacos](https://github.com/kitex-contrib/config-nacos)，
+[Apollo](https://github.com/kitex-contrib/config-apollo)等
+
