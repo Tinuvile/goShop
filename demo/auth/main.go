@@ -39,7 +39,8 @@ func kitexInit() (opts []server.Option) {
 
 	// service info 服务发现
 	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
+		//ServiceName: conf.GetConf().Kitex.Service,
+		ServiceName: "auth",
 	}))
 
 	// Consul服务注册

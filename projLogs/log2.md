@@ -163,3 +163,22 @@ exit status 1
 ```
 
 可以用浏览器访问[Consul Web界面](http://localhost:8500/)
+
+### 简单实现
+
+功能实现
+
+```go
+// demo/auth/biz/service/deliver_token_by_rpc.go
+// demo/auth/biz/service/verify_token_by_rpc.go
+// 简单实现
+```
+
+配置管理
+
+```yaml
+// demo/auth/conf/dev/conf.yaml
+jwt:
+  secret_key: "your-secret-key-12345"
+  expire_hours: 24
+```
