@@ -13,8 +13,14 @@ registry:
   username: ""
   password: ""
 
+jwt:
+  secret_key: "your-secret-key-12345"
+  expire_hours: 24
+
 mysql:
-  dsn: "gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"
+#  dsn: "gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local"
+  dsn: "%s:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local"
+#  占位符（%s）顺序：用户名、密码、主机地址、数据库名
 
 redis:
   address: "127.0.0.1:6379"

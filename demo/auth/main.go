@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/Tinuvile/goShop/demo/auth/biz/dal"
+	"github.com/joho/godotenv"
 	consul "github.com/kitex-contrib/registry-consul"
 	"log"
 	"net"
@@ -18,11 +20,18 @@ import (
 
 // 初始化服务并启动服务器
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
+	}
+
 	opts := kitexInit() // 初始化配置
+
+	dal.Init()
 
 	svr := authservice.NewServer(new(AuthServiceImpl), opts...) // 创建服务实例
 
-	err := svr.Run() // 启动服务
+	err = svr.Run() // 启动服务
 	if err != nil {
 		klog.Error(err.Error())
 	} // 错误日志
@@ -39,11 +48,12 @@ func kitexInit() (opts []server.Option) {
 
 	// service info 服务发现
 	opts = append(opts, server.WithServerBasicInfo(&rpcinfo.EndpointBasicInfo{
-		ServiceName: conf.GetConf().Kitex.Service,
+		//ServiceName: conf.GetConf().Kitex.Service,
+		ServiceName: "auth",
 	}))
 
 	// Consul服务注册
-	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0], consul.WithServiceName("auth"))
+	r, err := consul.NewConsulRegister(conf.GetConf().Registry.RegistryAddress[0])
 	if err != nil {
 		log.Fatal(err)
 	}

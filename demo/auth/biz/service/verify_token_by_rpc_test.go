@@ -2,8 +2,8 @@ package service
 
 import (
 	"context"
+	auth "github.com/Tinuvile/goShop/demo/auth/kitex_gen/auth"
 	"testing"
-	auth "auth/kitex_gen/auth"
 )
 
 func TestVerifyTokenByRPC_Run(t *testing.T) {
