@@ -29,3 +29,11 @@
 - [提交规范](https://www.conventionalcommits.org/zh-hans/v1.0.0/)
 
 - [版本管理](https://semver.org/lang/zh-CN/)
+
+## 微服务之间的通信
+
+### RPC(Remote Procedure Call)通信
+
+### HTTP请求(RESTful API)
+
+### 消息中间件(Message Middleware)
