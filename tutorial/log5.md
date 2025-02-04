@@ -38,3 +38,24 @@
 
 ### 消息中间件(Message Middleware)
 
+```go
+// auth/middleware/middleware
+package middleware
+
+import (
+	"context"
+	"fmt"
+	"github.com/cloudwego/kitex/pkg/endpoint"
+	"time"
+)
+
+func Middleware(next endpoint.Endpoint) endpoint.Endpoint {
+	return func(ctx context.Context, req, resp interface{}) (err error) {
+		begin := time.Now()
+		err = next(ctx, req, resp)
+		fmt.Println("middleware end", time.Since(begin))
+		return err
+	}
+}
+
+```
