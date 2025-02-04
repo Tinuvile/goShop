@@ -57,5 +57,4 @@ func Middleware(next endpoint.Endpoint) endpoint.Endpoint {
 		return err
 	}
 }
-
 ```
