@@ -14,3 +14,22 @@ goShop/idl 放置接口文档
 
 使用hz提供的注解文件[api.proto](https://www.cloudwego.io/zh/docs/hertz/tutorials/toolkit/usage-protobuf/)
 
+```protobuf
+// frontend/home.proto
+syntax = "proto3";
+
+package frontend.home;
+
+option go_package = "frontend/home";
+
+import "idl/api.proto";
+
+message Empty {}
+
+service HomeService {
+  rpc Home(Empty) returns(Empty) {
+    option (api.get) = "/";
+  }
+}
+```
+
