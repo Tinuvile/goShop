@@ -1,7 +1,7 @@
 package mysql
 
 import (
-	"frontend/conf"
+	"github.com/Tinuvile/goShop/app/frontend/conf"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

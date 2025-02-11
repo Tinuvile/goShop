@@ -3,7 +3,7 @@ package redis
 import (
 	"context"
 
-	"frontend/conf"
+	"github.com/Tinuvile/goShop/app/frontend/conf"
 	"github.com/redis/go-redis/v9"
 )
 

@@ -6,8 +6,8 @@ import (
 	"context"
 	"time"
 
-	"frontend/biz/router"
-	"frontend/conf"
+	"github.com/Tinuvile/goShop/app/frontend/biz/router"
+	"github.com/Tinuvile/goShop/app/frontend/conf"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/app/middlewares/server/recovery"
 	"github.com/cloudwego/hertz/pkg/app/server"
