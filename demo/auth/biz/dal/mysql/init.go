@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"fmt"
+	"github.com/Tinuvile/goShop/demo/auth/biz/model"
 	"github.com/Tinuvile/goShop/demo/auth/conf"
 	"os"
 
@@ -19,7 +20,10 @@ func Init() {
 		os.Getenv("MYSQL_USER"),
 		os.Getenv("MYSQL_PASSWORD"),
 		os.Getenv("MYSQL_HOST"),
-		os.Getenv("MYSQL_ROOT_DATABASE"))
+		os.Getenv("MYSQL_DATABASE"))
+
+	fmt.Println("DSN:", dsn) // 打印 DSN 以便调试
+
 	DB, err = gorm.Open(mysql.Open(dsn),
 		&gorm.Config{
 			PrepareStmt:            true,
@@ -41,6 +45,12 @@ func Init() {
 
 	if err != nil {
 		panic(err)
+	}
+
+	// 自动迁移
+	err := DB.AutoMigrate(&model.User{})
+	if err != nil {
+		return
 	}
 
 	fmt.Println(v)
