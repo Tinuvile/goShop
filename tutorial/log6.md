@@ -167,3 +167,8 @@ running...
 &{Env:test Hertz:{Service:frontend Address::8080 EnablePprof:true EnableGzip:true EnableAccessLog:true LogLevel:info LogFileName:log/hertz.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Password: Username: DB:0}}
 ```
 - 引用[Bootstrap](https://getbootstrap.com/)，此处我们采用下载 Bootstrap v5.3.3 的即用型编译代码的方式，放在 <strong>static/css</strong>和<strong>static/js</strong>两个文件夹里
+
+这里GoLand自动识别tmpl文件为文本文件，我们可以在设置里修改，将其识别为html文件：
+![img_9.png](img_9.png)
+
+- 引入[FontAwesome](https://fontawesome.com/)
