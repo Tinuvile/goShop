@@ -95,3 +95,75 @@ biz/
 ├── dal/             # 数据访问层（Database Access Layer）
 └── utils/           # 通用工具函数
 ```
+
+### 尝试启动服务
+
+```powershell
+PS F:\goShop\goShop\app\frontend> go run .
+&{Env:test Hertz:{Service:frontend Address::8080 EnablePprof:true EnableGzip:true EnableAccessLog:true LogLevel:info LogFileName:log/hertz.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:gorm:gor
+m@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Password: Username: DB:0}}
+```
+
+访问 http://localhost:8080 
+
+![img_7.png](img_7.png)
+
+### 进行代码改造
+
+- 新增 <strong>template</strong> 目录放置模板文件，建立 <strong>home.tmpl</strong>
+- <strong>biz/handle/home/home_service.go</strong> 修改对应代码，试运行：
+![img_8.png](img_8.png)
+- 使用goLang的[热加载工具](https://github.com/air-verse/air)优化
+```powershell
+PS F:\goShop\goShop\app\frontend> go install github.com/air-verse/air@latest
+go: downloading github.com/air-verse/air v1.61.7
+go: downloading github.com/fatih/color v1.17.0
+go: downloading github.com/gohugoio/hugo v0.134.3
+go: downloading github.com/pelletier/go-toml v1.9.5
+go: downloading golang.org/x/sys v0.25.0
+go: downloading golang.org/x/text v0.18.0
+go: downloading github.com/pelletier/go-toml/v2 v2.2.3
+go: downloading github.com/bep/golibsass v1.2.0
+go: downloading github.com/bep/godartsass v1.2.0
+go: downloading github.com/tdewolff/parse/v2 v2.7.15
+go: downloading github.com/bep/godartsass/v2 v2.1.0
+go: downloading github.com/spf13/cast v1.7.0
+go: downloading github.com/gobwas/glob v0.2.3
+go: downloading github.com/spf13/afero v1.11.0
+go: downloading google.golang.org/protobuf v1.34.2
+go: downloading github.com/cli/safeexec v1.0.1
+PS F:\goShop\goShop\app\frontend> air
+
+__    _   ___
+/ /\  | | | |_)
+/_/--\ |_| |_| \_ v1.61.7, built with Go go1.23.4
+
+mkdir F:\goShop\goShop\app\frontend\tmp
+watching .
+watching biz
+watching biz\dal
+watching biz\dal\mysql
+watching biz\dal\redis
+watching biz\handler
+watching biz\handler\home
+watching biz\router
+watching biz\router\home
+watching biz\service
+watching biz\utils
+watching conf
+watching conf\dev
+watching conf\online
+watching conf\test
+watching hertz_gen
+watching hertz_gen\api
+watching hertz_gen\frontend
+watching hertz_gen\frontend\home
+watching log
+watching script
+watching template
+!exclude tmp
+building...
+running...
+&{Env:test Hertz:{Service:frontend Address::8080 EnablePprof:true EnableGzip:true EnableAccessLog:true LogLevel:info LogFileName:log/hertz.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Password: Username: DB:0}}
+```
+- 引用[Bootstrap](https://getbootstrap.com/)，此处我们采用下载 Bootstrap v5.3.3 的即用型编译代码的方式，放在 <strong>static/css</strong>和<strong>static/js</strong>两个文件夹里

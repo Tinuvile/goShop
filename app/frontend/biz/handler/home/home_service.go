@@ -2,7 +2,6 @@ package home
 
 import (
 	"context"
-
 	"github.com/Tinuvile/goShop/app/frontend/biz/service"
 	"github.com/Tinuvile/goShop/app/frontend/biz/utils"
 	home "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/home"
@@ -28,5 +27,6 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
+	c.HTML(consts.StatusOK, "home.tmpl", resp)
+	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
 }
