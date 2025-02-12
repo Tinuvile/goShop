@@ -11,6 +11,7 @@
   </head>
   <body>
 
+  <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <img class="navbar-brand" href="#" src="/static/image/logo.png" alt="birdShop" style="height: 3em;">
@@ -39,9 +40,53 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+
+          <div class="ms-3">
+            <i class="fa-duotone fa-solid fa-cart-shopping fa-xl"></i>
+          </div>
+
+          <div class="ms-3">
+            <i class="fa-duotone fa-solid fa-user fa-xl"></i>
+          </div>
+
+          <div class="ms-3">
+            <button type="button" class="btn btn-primary">Sign In</button>
+          </div>
+
         </div>
       </div>
     </nav>
+  </header>
+
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="card" style="width: 18rem;">
+          <img src="/static/image/T-shirt1.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">T-shirt 1</p>
+            <h5 class="card-title">$100</h5>
+          </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+          <img src="/static/image/T-shirt2.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">T-shirt 2</p>
+            <h5 class="card-title">$150</h5>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="text-bg-primary py-5 text-center">
+      <p>&copy; 2025 <a href="https://github.com/Tinuvile/goShop" class="text-reset">Tinuvile</a></p>
+    </div>
+  </footer>
 
     <script src="/static/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
