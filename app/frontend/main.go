@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"net/http"
 	"time"
 
 	"github.com/Tinuvile/goShop/app/frontend/biz/router"
@@ -39,6 +40,10 @@ func main() {
 	router.GeneratedRegister(h)
 	h.LoadHTMLGlob("template/*")
 	h.Static("/static", "./")
+
+	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(http.StatusOK, "sign-in", utils.H{"Title": "Sign In"})
+	})
 
 	h.Spin()
 }
