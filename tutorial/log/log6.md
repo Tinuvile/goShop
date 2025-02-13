@@ -106,13 +106,13 @@ m@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Addr
 
 访问 http://localhost:8080 
 
-![img_7.png](img_7.png)
+![img_7.png](../image/img_7.png)
 
 ### 进行代码改造
 
 - 新增 <strong>template</strong> 目录放置模板文件，建立 <strong>home.tmpl</strong>
 - <strong>biz/handle/home/home_service.go</strong> 修改对应代码，试运行：
-![img_8.png](img_8.png)
+![img_8.png](../image/img_8.png)
 - 使用goLang的[热加载工具](https://github.com/air-verse/air)优化
 ```powershell
 PS F:\goShop\goShop\app\frontend> go install github.com/air-verse/air@latest
@@ -169,7 +169,7 @@ running...
 - 引用[Bootstrap](https://getbootstrap.com/)，此处我们采用下载 Bootstrap v5.3.3 的即用型编译代码的方式，放在 <strong>static/css</strong>和<strong>static/js</strong>两个文件夹里
 
 这里GoLand自动识别tmpl文件为文本文件，我们可以在设置里修改，将其识别为html文件：
-![img_9.png](img_9.png)
+![img_9.png](../image/img_9.png)
 
 - 引入[FontAwesome](https://fontawesome.com/)
 

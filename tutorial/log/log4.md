@@ -66,7 +66,7 @@ PS F:\goShop\goShop> docker-compose up -d
 
 ### 测试连接
 
-![img.png](img.png)
+![img.png](../image/img.png)
 
 ```text
 DBMS: MySQL (版本 8.0.41)
@@ -156,7 +156,7 @@ DSN: root:root@tcp(localhost:3306)/authTest?charset=utf8mb4&parseTime=True&loc=L
 {8.0.41}
 ```
 
-![img_1.png](img_1.png)
+![img_1.png](../image/img_1.png)
 
 如果想指定数据表的名字，可以修改user.go文件
 
@@ -175,7 +175,7 @@ func (User) TableName() string {
 	return "user"
 ```
 
-![img_2.png](img_2.png)
+![img_2.png](../image/img_2.png)
 
 ### 添加测试代码
 
@@ -248,16 +248,16 @@ DSN: root:root@tcp(localhost:3306)/authTest?charset=utf8mb4&parseTime=True&loc=L
 
 - 添加
 
-![img_3.png](img_3.png)
+![img_3.png](../image/img_3.png)
 
 - 修改
 
-![img_4.png](img_4.png)
+![img_4.png](../image/img_4.png)
 
 - 删除
 
-![img_5.png](img_5.png)
+![img_5.png](../image/img_5.png)
 
 - 强制删除
 
-![img_6.png](img_6.png)
+![img_6.png](../image/img_6.png)
