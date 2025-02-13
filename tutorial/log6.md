@@ -172,3 +172,8 @@ running...
 ![img_9.png](img_9.png)
 
 - 引入[FontAwesome](https://fontawesome.com/)
+
+### 优化
+
+在初步修改完页面后，需要对代码进行优化，使用[template](https://pkg.go.dev/text/template)的模板功能处理公共部分，分离出
+<strong>header.tmpl</strong>与<strong>footer.tmpl</strong>
