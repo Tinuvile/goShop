@@ -177,3 +177,49 @@ running...
 
 在初步修改完页面后，需要对代码进行优化，使用[template](https://pkg.go.dev/text/template)的模板功能处理公共部分，分离出
 <strong>header.tmpl</strong>与<strong>footer.tmpl</strong>
+
+### 动态渲染数据
+
+在<strong>home.go</strong>中添加数据：
+```go
+func (h *HomeService) Run(req *home.Empty) (resp map[string]any, err error) {
+//defer func() {
+// hlog.CtxInfof(h.Context, "req = %+v", req)
+// hlog.CtxInfof(h.Context, "resp = %+v", resp)
+//}()
+// todo edit your code
+
+resp = make(map[string]any)
+items := []map[string]any{
+{"Name": "T-shirt 1", "Price": 100, "Picture": "/static/image/T-shirt1.png"},
+{"Name": "T-shirt 2", "Price": 150, "Picture": "/static/image/T-shirt2.png"},
+{"Name": "T-shirt 3", "Price": 200, "Picture": "/static/image/T-shirt3.png"},
+{"Name": "cup 1", "Price": 50, "Picture": "/static/image/cup1.png"},
+{"Name": "cup 2", "Price": 55, "Picture": "/static/image/cup2.png"},
+{"Name": "cup 3", "Price": 60, "Picture": "/static/image/cup3.png"},
+{"Name": "cup 4", "Price": 80, "Picture": "/static/image/cup4.png"},
+}
+
+resp["Title"] = "Hot Sales"
+resp["Items"] = items
+return resp, nil
+}
+```
+
+修改<strong>home_service.go</strong>文件，并在<strong>home.tmpl</strong>中访问，访问方法见[Go template文档](https://pkg.go.dev/text/template#hdr-Arguments)
+```html
+{{template "header" .}}
+      <div class="row">
+        {{range .Items}}
+        <div class="card col-xl-3 col-lg-4 col-md-6 col-sm-12 p-2 border-0">
+          <img src="{{ .Picture}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">{{ .Name}}</p>
+            <h5 class="card-title">{{ .Price}}</h5>
+          </div>
+        </div>
+        {{end}}
+    </div>
+{{template "footer" .}}
+```
+
