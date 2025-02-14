@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/Tinuvile/goShop/app/frontend/biz/service"
 	"github.com/Tinuvile/goShop/app/frontend/biz/utils"
+	common "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/common"
 	home "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/home"
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"

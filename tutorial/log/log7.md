@@ -59,3 +59,10 @@ service AuthService {
 
 ### 使用代码生成能力生成代码
 
+```powershell
+C:\ProgramData\chocolatey\bin\make.exe -f F:/goShop/goShop/Makefile -C F:\goShop\goShop gen-frontend
+make: Entering directory 'F:/goShop/goShop'
+make: Leaving directory 'F:/goShop/goShop'
+
+进程已结束，退出代码为 0
+```
