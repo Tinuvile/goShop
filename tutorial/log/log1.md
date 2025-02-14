@@ -1,6 +1,8 @@
-# 2025-1-30 项目环境配置
+# 2025-1-30 
 
-## hertz框架搭建
+## 项目环境配置
+
+### hertz框架搭建
 
 ```powershell
 PS F:\goShop\goShop> go mod init goShop
@@ -34,9 +36,9 @@ ParsedHtml        : mshtml.HTMLDocumentClass
 RawContentLength  : 11
 ```
 
-## 脚手架
+### 脚手架
 
-### [cwgo](https://www.cloudwego.cn/zh/docs/cwgo/) 安装
+[cwgo](https://www.cloudwego.cn/zh/docs/cwgo/) 安装
 
 ```powershell
 PS F:\goShop\goShop> go install github.com/cloudwego/cwgo@latest
@@ -93,7 +95,7 @@ go: downloading github.com/benbjohnson/clock v1.1.0
 
 ```
 
-### 生成protobuf项目（以auth为例）
+ 生成protobuf项目（以auth为例）
 
 ```powershell
 PS F:\goShop\goShop> cd demo/auth
@@ -143,7 +145,7 @@ PS F:\goShop\goShop\demo\auth> go run .
 &{Env:test Kitex:{Service:auth Address::8888 LogLevel:info LogFileName:log/kitex.log LogMaxSize:10 LogMaxBackups:50 LogMaxAge:3} MySQL:{DSN:gorm:gorm@tcp(127.0.0.1:3306)/gorm?charset=utf8mb4&parseTime=True&loc=Local} Redis:{Address:127.0.0.1:6379 Username: Password: DB:0} Registry:{RegistryAddress:[127.0.0.1:2379] Username: Password:}}
 ```
 
-### RPC项目结构
+RPC项目结构
 
 ```text
 ├── biz // 业务逻辑目录
@@ -170,3 +172,35 @@ PS F:\goShop\goShop\demo\auth> go run .
 └── script // 启动脚本
     └── bootstrap.sh
 ```
+
+## 其他
+
+安装[Chocolatey](https://github.com/chocolatey/choco)
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+安装make
+
+```powershell
+C:\Users\ASUS>choco install make
+Chocolatey v2.4.2
+Installing the following packages:
+make
+By installing, you accept licenses for the packages.
+Downloading package from source 'https://community.chocolatey.org/api/v2/'
+
+make v4.4.1 [Approved]
+make package files install completed. Performing other installation steps.
+ ShimGen has successfully created a shim for make.exe
+ The install of make was successful.
+  Deployed to 'C:\ProgramData\chocolatey\lib\make'
+
+Chocolatey installed 1/1 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+```
+
+修改路径
+
+![img.png](img.png)

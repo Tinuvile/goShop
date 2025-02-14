@@ -4,5 +4,5 @@ gen-demo-auth:
 
 .PHONY: gen-frontend
 gen-frontend:
-	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend -module github.com/Tinuvile/goShop/app/frontend -I ../../idl
+	@cd app/frontend && cwgo server --type HTTP --idl ../../idl/frontend/auth_page.proto --service frontend -module github.com/Tinuvile/goShop/app/frontend -I ../../idl
 
