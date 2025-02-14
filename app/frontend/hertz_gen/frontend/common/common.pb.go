@@ -26,6 +26,11 @@ type Empty struct {
 	unknownFields protoimpl.UnknownFields
 }
 
+func (x *Empty) Error() string {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
