@@ -4,6 +4,8 @@ package main
 
 import (
 	"context"
+	"github.com/hertz-contrib/sessions"
+	"github.com/hertz-contrib/sessions/redis"
 	"net/http"
 	"time"
 
@@ -49,6 +51,9 @@ func main() {
 }
 
 func registerMiddleware(h *server.Hertz) {
+	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+	h.Use(sessions.New("BirdShop", store))
+
 	// log
 	logger := hertzlogrus.NewLogger()
 	hlog.SetLogger(logger)

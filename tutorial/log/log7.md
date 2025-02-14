@@ -72,3 +72,26 @@ make: Leaving directory 'F:/goShop/goShop'
 
 进程已结束，退出代码为 0
 ```
+
+### 写
+
+使用Hertz的中间件[sessions](https://github.com/hertz-contrib/sessions)
+
+```powershell
+PS F:\goShop\goShop\app\frontend> go get github.com/hertz-contrib/sessions
+go: added github.com/gorilla/context v1.1.2
+go: added github.com/gorilla/securecookie v1.1.2
+go: added github.com/gorilla/sessions v1.2.2
+go: added github.com/hertz-contrib/sessions v1.0.3
+```
+
+选择基于Redis的
+
+```go
+func registerMiddleware(h *server.Hertz) {
+	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+	h.Use(sessions.New("BirdShop", store))
+
+	···
+}
+```
