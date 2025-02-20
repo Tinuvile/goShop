@@ -18,7 +18,8 @@ func SendSuccessResponse(ctx context.Context, c *app.RequestContext, code int, d
 	c.JSON(code, data)
 }
 
-func WarpResponse(ctx context.Context, c *app.RequestContext, context map[string]any) map[string]any {
+func WarpResponse(ctx context.Context, c *app.RequestContext, content map[string]any) map[string]any {
+	// 修复未定义的变量 content
 	content["user_id"] = 222
 	return content
 }
