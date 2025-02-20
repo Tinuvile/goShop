@@ -85,7 +85,7 @@ go: added github.com/gorilla/sessions v1.2.2
 go: added github.com/hertz-contrib/sessions v1.0.3
 ```
 
-选择基于Redis的
+中间件选择Redis
 
 ```go
 func registerMiddleware(h *server.Hertz) {
@@ -94,4 +94,24 @@ func registerMiddleware(h *server.Hertz) {
 
 	···
 }
+```
+
+修改配置文件
+
+```yaml
+  redis:
+    image: "redis:7.2.4-alpine"
+    ports:
+      - 6379:6379
+```
+
+```powershell
+PS F:\goShop\goShop> docker compose up -d
+[+] Running 7/1
+[+] Running 9/1⣿⣿⣿] Pulling                                             [+] Running 7/1
+ ✔ redis Pulled                                                                                                                                                                                   158.3s 
+[+] Running 3/3
+ ✔ Container goshop-redis-1   Started                                                                                                                                                               1.2s 
+ ✔ Container goshop-consul-1  Started                                                                                                                                                               1.2s 
+ ✔ Container goshop-mysql-1   Started       
 ```
