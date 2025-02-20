@@ -50,6 +50,10 @@ func main() {
 		ctx.HTML(http.StatusOK, "sign-in", utils.H{"Title": "Sign In"})
 	})
 
+	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(http.StatusOK, "sign-up", utils.H{"Title": "Sign Up"})
+	})
+
 	h.Spin()
 }
 

@@ -115,3 +115,5 @@ PS F:\goShop\goShop> docker compose up -d
  ✔ Container goshop-consul-1  Started                                                                                                                                                               1.2s 
  ✔ Container goshop-mysql-1   Started       
 ```
+
+再修改相关代码部分，即完成登录功能。

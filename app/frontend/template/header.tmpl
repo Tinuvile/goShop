@@ -14,7 +14,7 @@
 
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+        <div class="container">
             <img class="navbar-brand" href="#" src="/static/image/logo.png" alt="birdShop" style="height: 3em;">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -37,6 +37,7 @@
                         <a class="nav-link">About</a>
                     </li>
                 </ul>
+
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -47,8 +48,16 @@
                 </div>
 
                 {{ if .user_id }}
-                <div class="ms-3">
-                    <i class="fa-duotone fa-solid fa-user fa-xl"></i>
+
+                <div class="dropdown">
+                    <div class="ms-3 dropdown-toggle" data-bs-toggle="dropdown">
+                        <i class="fa-duotone fa-solid fa-user fa-xl"></i>
+                        <span>Hello</span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Order Center</a></li>
+                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                    </ul>
                 </div>
 
                 {{ else }}
