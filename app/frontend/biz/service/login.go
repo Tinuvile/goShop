@@ -28,6 +28,9 @@ func (h *LoginService) Run(req *auth.LoginReq) (resp *common.Empty, err error) {
 
 	session := sessions.Default(h.RequestContext)
 	session.Set("user_id", 1)
-	session.Save()
+	err = session.Save()
+	if err != nil {
+		return nil, err
+	}
 	return
 }

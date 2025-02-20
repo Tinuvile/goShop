@@ -56,7 +56,11 @@
                     </div>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Order Center</a></li>
-                        <li><a class="dropdown-item" href="#">Log out</a></li>
+                        <li>
+                            <form action="/auth/logout" method="post">
+                                <button class="dropdown-item" type="submit">Log out</button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
 

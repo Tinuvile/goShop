@@ -203,4 +203,4 @@ Chocolatey installed 1/1 packages.
 
 修改路径
 
-![img.png](img.png)
+![img.png](../image/img_10.png)
