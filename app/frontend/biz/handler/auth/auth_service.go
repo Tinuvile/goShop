@@ -28,6 +28,8 @@ func Login(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
+	c.Redirect(consts.StatusOK, []byte("/"))
+
 	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
-	utils.SendSuccessResponse(ctx, c, consts.StatusOK, "done!")
+	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, "done!")
 }

@@ -26,6 +26,6 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 
-	c.HTML(consts.StatusOK, "home", resp)
+	c.HTML(consts.StatusOK, "home", utils.WarpResponse(ctx, c, resp))
 	//utils.SendSuccessResponse(ctx, c, consts.StatusOK, resp)
 }

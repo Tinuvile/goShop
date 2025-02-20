@@ -6,7 +6,9 @@ import (
 	"context"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
+	"github.com/joho/godotenv"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/Tinuvile/goShop/app/frontend/biz/router"
@@ -27,6 +29,7 @@ import (
 )
 
 func main() {
+	_ = godotenv.Load()
 	// init dal
 	// dal.Init()
 	address := conf.GetConf().Hertz.Address
@@ -51,7 +54,7 @@ func main() {
 }
 
 func registerMiddleware(h *server.Hertz) {
-	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+	store, _ := redis.NewStore(10, "tcp", conf.GetConf().Redis.Address, "", []byte(os.Getenv("SESSION_SECRET")))
 	h.Use(sessions.New("BirdShop", store))
 
 	// log

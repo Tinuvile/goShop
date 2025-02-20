@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/hertz-contrib/sessions"
 
 	auth "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/auth"
 	common "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/common"
@@ -23,6 +24,10 @@ func (h *LoginService) Run(req *auth.LoginReq) (resp *common.Empty, err error) {
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// todo edit your code
+	// TODO USER SVC API
 
+	session := sessions.Default(h.RequestContext)
+	session.Set("user_id", 1)
+	session.Save()
 	return
 }
