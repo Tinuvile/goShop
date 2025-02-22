@@ -17,3 +17,16 @@ func GlobalAuth() app.HandlerFunc {
 		c.Next(ctx)
 	}
 }
+
+func Auth() app.HandlerFunc {
+	return func(ctx context.Context, c *app.RequestContext) {
+		s := sessions.Default(c)
+		userId := s.Get("user_id")
+		if userId == nil {
+			c.Redirect(302, []byte("/sign-in"))
+			c.Abort()
+			return
+		}
+		c.Next(ctx)
+	}
+}
