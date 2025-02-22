@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	user "github.com/Tinuvile/goShop/rpc_gen/user"
+	user "github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
 	"github.com/Tinuvile/goShop/app/user/biz/service"
 )
 

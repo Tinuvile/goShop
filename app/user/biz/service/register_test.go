@@ -2,8 +2,9 @@ package service
 
 import (
 	"context"
+	user "github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
+	"reflect"
 	"testing"
-	user "github.com/Tinuvile/goShop/rpc_gen/user"
 )
 
 func TestRegister_Run(t *testing.T) {
@@ -18,4 +19,90 @@ func TestRegister_Run(t *testing.T) {
 
 	// todo: edit your unit test
 
+}
+
+func TestNewRegisterService(t *testing.T) {
+	type args struct {
+		ctx context.Context
+	}
+	tests := []struct {
+		name string
+		args args
+		want *RegisterService
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := NewRegisterService(tt.args.ctx); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("NewRegisterService() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func TestRegisterService_Run(t *testing.T) {
+	type fields struct {
+		ctx context.Context
+	}
+	type args struct {
+		req *user.RegisterReq
+	}
+	tests := []struct {
+		name     string
+		fields   fields
+		args     args
+		wantResp *user.RegisterResp
+		wantErr  bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &RegisterService{
+				ctx: tt.fields.ctx,
+			}
+			gotResp, err := s.Run(tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Run() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(gotResp, tt.wantResp) {
+				t.Errorf("Run() gotResp = %v, want %v", gotResp, tt.wantResp)
+			}
+		})
+	}
+}
+
+func TestRegisterService_Run1(t *testing.T) {
+	type fields struct {
+		ctx context.Context
+	}
+	type args struct {
+		req *user.RegisterReq
+	}
+	tests := []struct {
+		name     string
+		fields   fields
+		args     args
+		wantResp *user.RegisterResp
+		wantErr  bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			s := &RegisterService{
+				ctx: tt.fields.ctx,
+			}
+			gotResp, err := s.Run(tt.args.req)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("Run() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(gotResp, tt.wantResp) {
+				t.Errorf("Run() gotResp = %v, want %v", gotResp, tt.wantResp)
+			}
+		})
+	}
 }
