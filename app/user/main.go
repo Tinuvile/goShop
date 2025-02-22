@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"github.com/Tinuvile/goShop/app/user/biz/dal"
 	"github.com/joho/godotenv"
 	consul "github.com/kitex-contrib/registry-consul"
 	"net"
+	"os"
 	"time"
 
 	"github.com/Tinuvile/goShop/app/user/conf"
@@ -22,6 +24,9 @@ func main() {
 	if err != nil {
 		klog.Error(err.Error())
 	}
+
+	fmt.Printf("MYSQL_USER: %s\n", os.Getenv("MYSQL_USER"))
+	fmt.Printf("MYSQL_HOST: %s\n", os.Getenv("MYSQL_HOST"))
 
 	dal.Init()
 
