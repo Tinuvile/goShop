@@ -47,20 +47,20 @@ func main() {
 	h.LoadHTMLGlob("template/*")
 	h.Static("/static", "./")
 
+	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(http.StatusOK, "about", utils.H{"Title": "About"})
+	})
+
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
 		data := utils.H{
 			"Title": "Sign In",
-			"Next":  ctx.Request.Header.Get("Referer"),
+			"Next":  ctx.Query("next"),
 		}
 		ctx.HTML(http.StatusOK, "sign-in", data)
 	})
 
 	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
 		ctx.HTML(http.StatusOK, "sign-up", utils.H{"Title": "Sign Up"})
-	})
-
-	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(http.StatusOK, "about", utils.H{"Title": "About"})
 	})
 
 	h.Spin()
