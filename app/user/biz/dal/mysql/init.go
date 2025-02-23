@@ -3,7 +3,6 @@ package mysql
 import (
 	"fmt"
 	"github.com/Tinuvile/goShop/app/user/biz/model"
-	"github.com/Tinuvile/goShop/app/user/conf"
 	"os"
 
 	"gorm.io/driver/mysql"
@@ -16,7 +15,9 @@ var (
 )
 
 func Init() {
-	dsn := fmt.Sprintf(conf.GetConf().MySQL.DSN,
+	dsn := fmt.Sprintf(
+		//conf.GetConf().MySQL.DSN,
+		"%s:%s@tcp(%s:3306)/user?charset=utf8mb4&parseTime=True&loc=Local",
 		os.Getenv("MYSQL_USER"),
 		os.Getenv("MYSQL_PASSWORD"),
 		os.Getenv("MYSQL_HOST"),
