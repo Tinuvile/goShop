@@ -3,6 +3,7 @@ package mysql
 import (
 	"fmt"
 	"github.com/Tinuvile/goShop/app/user/biz/model"
+	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -22,7 +23,7 @@ func Init() {
 	//	os.Getenv("MYSQL_HOST"),
 	//)
 	//dsn := "gorm:gorm@tcp(localhost:3306)/user?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := "gorm:gorm@tcp(localhost:3306)/user?charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true"
+	dsn := "gorm:gorm@tcp(localhost:3306)/user?charset=utf8mb4&parseTime=True&loc=Local&tls=skip-verify"
 
 	DB, err = gorm.Open(mysql.Open(dsn),
 		&gorm.Config{
