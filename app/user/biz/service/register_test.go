@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"github.com/Tinuvile/goShop/app/user/biz/dal/mysql"
+
 	user "github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
 	"github.com/joho/godotenv"
 	"reflect"
@@ -61,3 +62,4 @@ func TestRegisterService_Run(t *testing.T) {
 		})
 	}
 }
+

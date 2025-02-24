@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/Tinuvile/goShop/app/user/biz/dal/mysql"
 	"github.com/Tinuvile/goShop/app/user/biz/model"
+  
 	user "github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
 	"golang.org/x/crypto/bcrypt"
 	"regexp"
@@ -33,6 +34,7 @@ func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, e
 	if req.Password != req.ConfirmPassword {
 		return nil, errors.New("password not match")
 	}
+
 	passwordHashed, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
 		return nil, err
@@ -41,6 +43,7 @@ func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, e
 		Email:          req.Email,
 		PasswordHashed: string(passwordHashed),
 	}
+
 	err = model.Create(mysql.DB, newUser)
 	if err != nil {
 		return nil, err
