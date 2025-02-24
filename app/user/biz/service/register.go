@@ -7,6 +7,7 @@ import (
 	"github.com/Tinuvile/goShop/app/user/biz/model"
 	user "github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
 	"golang.org/x/crypto/bcrypt"
+	"regexp"
 )
 
 type RegisterService struct {
@@ -21,6 +22,12 @@ func (s *RegisterService) Run(req *user.RegisterReq) (resp *user.RegisterResp, e
 	// Finish your business logic.
 	if req.Email == "" || req.Password == "" || req.ConfirmPassword == "" {
 		return nil, errors.New("email, password and confirm password are required")
+	}
+
+	emailRegex := `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`
+	matched, err := regexp.MatchString(emailRegex, req.Email)
+	if err != nil || !matched {
+		return nil, errors.New("invalid email format")
 	}
 
 	if req.Password != req.ConfirmPassword {
