@@ -1,10 +1,12 @@
 package main
 
 import (
-	"github.com/joho/godotenv"
-	consul "github.com/kitex-contrib/registry-consul"
+	"github.com/Tinuvile/goShop/app/user/biz/dal"
 	"net"
 	"time"
+
+	"github.com/joho/godotenv"
+	consul "github.com/kitex-contrib/registry-consul"
 
 	"github.com/Tinuvile/goShop/app/user/conf"
 	"github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user/userservice"
@@ -17,13 +19,18 @@ import (
 )
 
 func main() {
-	_ = godotenv.Load()
+	err := godotenv.Load()
+	if err != nil {
+		klog.Error(err.Error())
+	}
+
+	dal.Init()
 
 	opts := kitexInit()
 
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
 
-	err := svr.Run()
+	err = svr.Run()
 	if err != nil {
 		klog.Error(err.Error())
 	}
