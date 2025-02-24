@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/joho/godotenv"
 	consul "github.com/kitex-contrib/registry-consul"
 	"net"
 	"time"
@@ -16,6 +17,8 @@ import (
 )
 
 func main() {
+	_ = godotenv.Load()
+
 	opts := kitexInit()
 
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
