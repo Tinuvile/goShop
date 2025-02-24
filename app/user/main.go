@@ -1,17 +1,15 @@
 package main
 
 import (
-	"errors"
 	"github.com/Tinuvile/goShop/app/user/biz/dal"
-	"github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user/userservice"
-	"github.com/joho/godotenv"
-	consul "github.com/kitex-contrib/registry-consul"
-	"log"
 	"net"
-	"os"
 	"time"
 
+	"github.com/joho/godotenv"
+	consul "github.com/kitex-contrib/registry-consul"
+
 	"github.com/Tinuvile/goShop/app/user/conf"
+	"github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user/userservice"
 	"github.com/cloudwego/kitex/pkg/klog"
 	"github.com/cloudwego/kitex/pkg/rpcinfo"
 	"github.com/cloudwego/kitex/server"
@@ -20,40 +18,21 @@ import (
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
-//func main() {
-//	err := godotenv.Load()
-//	if err != nil {
-//		klog.Error(err.Error())
-//	}
-//
-//	dal.Init()
-//
-//	opts := kitexInit()
-//
-//	svr := userservice.NewServer(new(UserServiceImpl), opts...)
-//
-//	err = svr.Run()
-//	if err != nil {
-//		klog.Error(err.Error())
-//	}
-//}
-
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Fatalf("加载环境变量失败: %v", err)
+	err := godotenv.Load()
+	if err != nil {
+		klog.Error(err.Error())
 	}
 
-	if _, err := os.Stat(".env"); errors.Is(err, os.ErrNotExist) {
-		log.Fatalf(".env文件不存在")
-	}
-
-	dal.Init() // 确保此处会panic时打印日志
+	dal.Init()
 
 	opts := kitexInit()
+
 	svr := userservice.NewServer(new(UserServiceImpl), opts...)
 
-	if err := svr.Run(); err != nil {
-		klog.Fatalf("服务启动失败: %v", err)
+	err = svr.Run()
+	if err != nil {
+		klog.Error(err.Error())
 	}
 }
 

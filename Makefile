@@ -12,4 +12,5 @@ gen-rpc-client:
 
 .PHONY: gen-rpc-server
 gen-rpc-server:
-	@cd app/user && cwgo server --type RPC --service user --module github.com/Tinuvile/goShop/app/user --pass "-use github.com/Tinuvile/goShop/rpc_gen" --I ../../idl --idl ../../idl/user.proto
+	@cd app/user && cwgo server --type RPC --service user --module github.com/Tinuvile/goShop/app/user --pass "-use github.com/Tinuvile/goShop/rpc_gen/kitex_gen" --I ../../idl --idl ../../idl/user.proto
+
