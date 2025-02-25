@@ -2,6 +2,8 @@ package service
 
 import (
 	"context"
+	"github.com/Tinuvile/goShop/app/frontend/infra/rpc"
+	"github.com/Tinuvile/goShop/rpc_gen/kitex_gen/user"
 	"github.com/hertz-contrib/sessions"
 
 	auth "github.com/Tinuvile/goShop/app/frontend/hertz_gen/frontend/auth"
@@ -24,8 +26,17 @@ func (h *RegisterService) Run(req *auth.RegisterReq) (resp *common.Empty, err er
 	// hlog.CtxInfof(h.Context, "resp = %+v", resp)
 	//}()
 	// TODO user svc api
+	userResp, err := rpc.UserClient.Register(h.Context, &user.RegisterReq{
+		Email:           req.Email,
+		Password:        req.Password,
+		ConfirmPassword: req.PasswordConfirm,
+	})
+	if err != nil {
+		return nil, err
+	}
+
 	session := sessions.Default(h.RequestContext)
-	session.Set("user_id", 1)
+	session.Set("user_id", userResp.UserId)
 	err = session.Save()
 	if err != nil {
 		return nil, err
