@@ -8,6 +8,7 @@ replace (
 )
 
 require (
+	github.com/Tinuvile/goShop/demo/auth v0.0.0-20250224160014-68d1f2bd0aa6
 	github.com/Tinuvile/goShop/rpc_gen v0.0.0-20250223142540-dca2b7d233a2
 	github.com/cloudwego/kitex v0.12.2
 	github.com/joho/godotenv v1.5.1
@@ -80,7 +81,7 @@ require (
 	go.opentelemetry.io/otel/trace v1.25.0 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
 	golang.org/x/arch v0.2.0 // indirect
-	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
